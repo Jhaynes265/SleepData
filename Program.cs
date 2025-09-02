@@ -45,5 +45,9 @@ if (resp == "1")
 else if (resp == "2")
 {
     // TODO: parse data file
+    using StreamReader data = new("data.txt");
+    string sleepdata = data.ReadToEnd();
+
+    Console.WriteLine(sleepdata);
 
 }

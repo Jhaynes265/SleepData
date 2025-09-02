@@ -5,6 +5,7 @@ Console.WriteLine("Enter 2 to parse data.");
 Console.WriteLine("Enter anything else to quit.");
 // input response
 string? resp = Console.ReadLine();
+string file = "data.txt";
 
 if (resp == "1")
 {
@@ -44,10 +45,33 @@ if (resp == "1")
 }
 else if (resp == "2")
 {
-    // TODO: parse data file
-    using StreamReader data = new("data.txt");
-    string sleepdata = data.ReadToEnd();
-
-    Console.WriteLine(sleepdata);
+        // read data from file
+        if (File.Exists(file))
+        {
+            // accumulators needed for GPA
+            int gradePoints = 0;
+            int count = 0;
+            // read data from file
+            StreamReader sr = new(file);
+            while (!sr.EndOfStream)
+            {
+                string? line = sr.ReadLine();
+                // convert string to array
+                string[] arr = String.IsNullOrEmpty(line) ? [] : line.Split('|');
+                // display array data
+                Console.WriteLine("Course: {0}, Grade: {1}", arr[0], arr[1]);
+                // add to accumulators
+                gradePoints += arr[1] == "A" ? 4 : arr[1] == "B" ? 3 : arr[1] == "C" ? 2 : arr[1] == "D" ? 1 : 0;
+                count += 1;
+            }
+            sr.Close();
+            // calculate GPA
+            double GPA = (double)gradePoints / count;
+            Console.WriteLine("GPA: {0:n2}", GPA);
+        }
+        else
+        {
+            Console.WriteLine("File does not exist");
+        }
 
 }

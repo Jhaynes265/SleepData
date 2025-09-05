@@ -1,5 +1,4 @@
-﻿Console.WriteLine("Hello,World!");
-// ask for input
+﻿// ask for input
 Console.WriteLine("Enter 1 to create data file.");
 Console.WriteLine("Enter 2 to parse data.");
 Console.WriteLine("Enter anything else to quit.");
@@ -62,7 +61,7 @@ else if (resp == "2")
             Console.WriteLine($"Week of {week: MMM, dd, yyyy}");
             Console.WriteLine($"Su Mo Tu We Th Fr Sa");
             Console.WriteLine($"-- -- -- -- -- -- --");
-            Console.WriteLine(string.Join("  ", hours));
+            Console.WriteLine($"{hours[0],2} {hours[1],2} {hours[2],2} {hours[3],2} {hours[4],2} {hours[5],2} {hours[6],2}");
 
         }
             sr.Close();

@@ -48,18 +48,16 @@ else if (resp == "2")
         // read data from file
         if (File.Exists(file))
         {
-            // accumulators needed for GPA
-            int gradePoints = 0;
-            int count = 0;
-            // read data from file
             StreamReader sr = new(file);
             while (!sr.EndOfStream)
             {
                 string? line = sr.ReadLine();
                 // convert string to array
                 string[] arr = String.IsNullOrEmpty(line) ? [] : line.Split(',');
-                // display array data
-                Console.WriteLine("Course: {0}, Grade: {1}", arr[0], arr[1]);
+                // convert array to DateTime
+                DateTime week = Convert.ToDateTime(arr[0]);
+                // convert array to DateTime
+                Console.WriteLine($"Week of {week: MMM, dd, yyyy}, Grade: {arr[1]}");
     
             }
             sr.Close();

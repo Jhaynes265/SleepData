@@ -49,17 +49,22 @@ else if (resp == "2")
         if (File.Exists(file))
         {
             StreamReader sr = new(file);
-            while (!sr.EndOfStream)
-            {
-                string? line = sr.ReadLine();
-                // convert string to array
-                string[] arr = String.IsNullOrEmpty(line) ? [] : line.Split(',');
-                // convert array to DateTime
-                DateTime week = Convert.ToDateTime(arr[0]);
-                // convert array to DateTime
-                Console.WriteLine($"Week of {week: MMM, dd, yyyy}, Grade: {arr[1]}");
-    
-            }
+        while (!sr.EndOfStream)
+        {
+            string? line = sr.ReadLine();
+            // convert string to array
+            string[] arr = String.IsNullOrEmpty(line) ? [] : line.Split(',');
+            // convert array to DateTime
+            DateTime week = Convert.ToDateTime(arr[0]);
+            // split hours
+            string[] hours = arr[1].Split('|');
+            // display data
+            Console.WriteLine($"Week of {week: MMM, dd, yyyy}");
+            Console.WriteLine($"Su Mo Tu We Th Fr Sa");
+            Console.WriteLine($"-- -- -- -- -- -- --");
+            Console.WriteLine(string.Join("  ", hours));
+
+        }
             sr.Close();
         }
         else

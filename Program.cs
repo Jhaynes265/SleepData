@@ -57,11 +57,19 @@ else if (resp == "2")
             DateTime week = Convert.ToDateTime(arr[0]);
             // split hours
             string[] hours = arr[1].Split('|');
+            // make sum of hours
+            int sum = 0;
+            for (int i = 0; i < hours.Length; i++)
+            {
+                sum += Convert.ToInt32(hours[i]);
+            }
+            // make average of hours
+            double avg = sum / 7.0;
             // display data
             Console.WriteLine($"Week of {week: MMM, dd, yyyy}");
-            Console.WriteLine($"Su Mo Tu We Th Fr Sa");
-            Console.WriteLine($"-- -- -- -- -- -- --");
-            Console.WriteLine($"{hours[0],2} {hours[1],2} {hours[2],2} {hours[3],2} {hours[4],2} {hours[5],2} {hours[6],2}");
+            Console.WriteLine($"Su Mo Tu We Th Fr Sa Tot Avg");
+            Console.WriteLine($"-- -- -- -- -- -- -- --- ---");
+            Console.WriteLine($"{hours[0],2} {hours[1],2} {hours[2],2} {hours[3],2} {hours[4],2} {hours[5],2} {hours[6],2} {sum, 3} {Math.Round(avg, 1), 3}");
 
         }
             sr.Close();
